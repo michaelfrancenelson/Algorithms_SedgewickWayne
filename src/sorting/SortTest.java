@@ -14,8 +14,10 @@ public class SortTest {
 		in = new In(new File("algs4-data/words3.txt"));
 		a = in.readAllStrings();
 
-		Selection.sort(a);
+//		Selection.sort(a);
+//		Sort.insertionImproved(a);
+		Sort.shell(a);
 		Sort.show(a);
-		
+		System.out.println("is sorted: " + Sort.isSorted(a));
 	}
 }

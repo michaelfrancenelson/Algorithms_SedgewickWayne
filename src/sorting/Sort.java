@@ -7,6 +7,46 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Sort {
 
+	public static <T extends Comparable<T>> void shell(T[] a)
+	{
+		int n = a.length;
+		int h = 1;
+		while (h < n/3) h = 3*h + 1; // 1, 4, 13, 40, 121, 364, 1093, ...
+		while (h >= 1)
+		{  
+			/* h-sort the array for decreasing values of h. */
+			for (int i = h; i < n; i++)
+			{ 
+				/* Locate first element greater than the element at index i: */
+				int j = findFirstGreater(a, i, h);
+
+				/* Insert element i just before the first greater element. */
+				insertCascaded(a, i, j, h);
+			}
+			h = h/3;
+		}
+	}
+
+	private static <T extends Comparable<T>> void insertCascaded(T[] a, int i, int j, int h)
+	{
+		if (j < i)
+		{
+			T toMove = a[i];
+			for (int jj = i; jj > j; jj -= h)
+				a[jj] = a[jj - h];
+			a[j] = toMove;
+		}
+	}
+	
+	private static <T extends Comparable<T>> int findFirstGreater(T[] a, int start, int increment)
+	{
+		int j = start;
+		
+		/* Locate first greater element: */
+		for (j = start; j >= increment && less(a[start], a[j - increment]); j -= increment) {};
+		return j;
+	}
+	
 	/** Improved insertion sort that doesn't perform unnecessary array element exchanges. */
 	public static <T extends Comparable<T>> void insertionImproved(T[] a)
 	{
@@ -19,16 +59,11 @@ public class Sort {
 			 * Locate the first element greater than the element at j.
 			 * Insert element j into that location and move all the elements rightward by one index. */
 
-			int j = i;
-			for (j = i; j > 0 && less(a[i], a[j - 1]); j--) {};
-
-			if (j < i)
-			{
-				T toMove = a[i];
-				for (int jj = i; jj > j; jj--)
-					a[jj] = a[jj - 1];
-				a[j] = toMove;
-			}
+			/* Locate first greater element: */
+			int j = findFirstGreater(a, i, 1);
+			
+			/* Insert element at index i, moving other elements right: */
+			insertCascaded(a, i, j, 1);
 		}
 	}
 
@@ -87,23 +122,9 @@ public class Sort {
 		a = in(name).readAllStrings();
 		insertion(a);
 		show(a);
-//
-//		a = in(name).readAllStrings();
-//		selection(a);
-//		show(a);
-
-
 
 		assert isSorted(a);
 	}
-
-
-
-
-
-
-	//	public static <T extends Comparable<T>> void sort(T[] a)
-	//	{ /* sort algorithm here */ }
 
 	/** Compare two elements. */
 	protected static <T extends Comparable<T>> boolean less(T a, T a2)
