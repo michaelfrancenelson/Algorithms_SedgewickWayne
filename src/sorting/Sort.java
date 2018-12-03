@@ -92,7 +92,6 @@ public class Sort {
 
 		for (int i = 0; i < n; i++)
 		{
-
 			int min = i;  /* index of (currently) smallest known element. */
 
 			/* Loop through all elements with index greater than i to find the smallest element. */
