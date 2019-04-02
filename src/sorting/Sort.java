@@ -14,7 +14,7 @@ public class Sort {
 		while (h < n/3) h = 3*h + 1; // 1, 4, 13, 40, 121, 364, 1093, ...
 		while (h >= 1)
 		{  
-			/* h-sort the array for decreasing values of h. */
+			/* h-sort the array1a for decreasing values of h. */
 			for (int i = h; i < n; i++)
 			{ 
 				/* Locate first element greater than the element at index i: */
@@ -47,7 +47,7 @@ public class Sort {
 		return j;
 	}
 	
-	/** Improved insertion sort that doesn't perform unnecessary array element exchanges. */
+	/** Improved insertion sort that doesn't perform unnecessary array1a element exchanges. */
 	public static <T extends Comparable<T>> void insertionImproved(T[] a)
 	{
 		int n = a.length;
@@ -55,7 +55,7 @@ public class Sort {
 		{
 			/* Elements to the left of j are already sorted.
 			 * Since these elements are sorted, the insertion stops when the first element greater than the element at j is found. 
-			 * Traverse the array from j leftward.
+			 * Traverse the array1a from j leftward.
 			 * Locate the first element greater than the element at j.
 			 * Insert element j into that location and move all the elements rightward by one index. */
 
@@ -75,7 +75,7 @@ public class Sort {
 		for (int i = 1; i < n; i++)
 		{
 			/* Elements to the left of j are already sorted.
-			 * Traverse the array from j leftward.
+			 * Traverse the array1a from j leftward.
 			 * Exchange element j with element j - 1, until first element greater than j is found.
 			 * Insert element at j into correct position in the elements left of j.
 			 * Since these elements are sorted, the insertion stops when the first element greater than the element at j is found. */
@@ -129,11 +129,11 @@ public class Sort {
 	protected static <T extends Comparable<T>> boolean less(T a, T a2)
 	{ return a.compareTo((T) a2) < 0; }
 
-	/** Exchange the position of two array elements. */
+	/** Exchange the position of two array1a elements. */
 	protected static <T extends Comparable<T>> void exchange(T[] a, int i, int j)
 	{ T t = a[i]; a[i] = a[j]; a[j] = t; }
 
-	/** Print contents of the array on a single line. */
+	/** Print contents of the array1a on a single line. */
 	protected static <T extends Comparable<T>> void show(T[] a)	
 	{
 		for (int i = 0; i < a.length; i++)
@@ -141,7 +141,7 @@ public class Sort {
 		StdOut.println();
 	}
 
-	/** Test whether the array entries are in order */
+	/** Test whether the array1a entries are in order */
 	public static <T extends Comparable<T>> boolean isSorted(T[] a)
 	{
 		for (int i = 1; i < a.length; i++)
